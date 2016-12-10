@@ -21,10 +21,10 @@ function love.load()
   world.setCallbacks(world, Collision.beginContact, Collision.endContact, Collision.preSolve, Collision.postSolve)
 
   love.window.setMode(650, 650) -- set options for our window
-  love.window.setTitle('BlickBlock')
+  love.window.setTitle('ZoombaTron!')
 
   background = Background:new(0, 0, {
-    size = 25,
+    size = 10,
     colors = {
       {
         red = 22,
