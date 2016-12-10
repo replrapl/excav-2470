@@ -12,7 +12,8 @@ function Background:new(x, y, params)
     fill = params.fill,
     maxWidth = params.maxWidth,
     maxHeight = params.maxHeight,
-    rows = {}
+    rows = {},
+    canvas = love.graphics.newCanvas()
   }
   self.__index = self
   return setmetatable(newObj, self)
@@ -50,7 +51,8 @@ function Background:build()
   end
 end
 
-function Background:draw()
+function Background:drawCanvas()
+  love.graphics.setCanvas(self.canvas)
   for i = 1, #self.rows do
     for j = 1, #self.rows[i] do
       column = self.rows[i][j]
@@ -58,6 +60,11 @@ function Background:draw()
       love.graphics.rectangle('fill', column.x, column.y, self.size, self.size)
     end
   end
+  love.graphics.setCanvas()
+end
+
+function Background:draw()
+  love.graphics.draw(self.canvas)
 end
 
 return Background

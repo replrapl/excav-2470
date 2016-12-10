@@ -24,7 +24,7 @@ function love.load()
   love.window.setTitle('ZoombaTron!')
 
   background = Background:new(0, 0, {
-    size = 10,
+    size = 1,
     colors = {
       {
         red = 22,
@@ -55,6 +55,7 @@ function love.load()
     maxWidth = 650
   })
   background:build()
+  background:drawCanvas()
 
   block = Block:new(world, 25, 25, 50, 50)
   block2 = Block:new(world, 225, 25, 50, 50)
@@ -67,14 +68,6 @@ end
 
 function love.update(dt)
   world:update(dt)
-
-  if alpha == 255 then
-    alphaIncrementer = -1
-  elseif alpha == 0 then
-    alphaIncrementer = 1
-  end
-
-  alpha = alpha + alphaMultiplier * alphaIncrementer
 
   if love.keyboard.isDown("d") then
     block.body:applyForce(400, 0)
@@ -91,10 +84,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.setColor(102, 20, 99, 255)
-  love.graphics.print(alpha, 20, 20)
-
-  love.graphics.setColor(220, 6, 217, alpha)
+  love.graphics.setColor(220, 6, 217, 255)
   love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
 
   background:draw()
