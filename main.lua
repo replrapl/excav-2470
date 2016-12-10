@@ -59,7 +59,8 @@ function love.load()
   block = Block:new(world, 25, 25, 50, 50)
   block2 = Block:new(world, 225, 25, 50, 50)
 
-  ground = Ground:new(world, 325, 649, 650, 1)
+  ceiling = Wall:new(world, 325, 1, 650, 1)
+  ground = Wall:new(world, 325, 649, 650, 1)
   leftWall = Wall:new(world, 1, 325, 1, 650)
   rightWall = Wall:new(world, 649, 325, 1, 650)
 end
@@ -100,6 +101,7 @@ function love.draw()
   block:draw()
   block2:draw()
 
+  ceiling:draw()
   ground:draw()
   leftWall:draw()
   rightWall:draw()
