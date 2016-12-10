@@ -96,5 +96,6 @@ function love.draw()
   leftWall:draw()
   rightWall:draw()
 
-  trace.draw()
+  love.graphics.print("Current FPS: "..tostring(love.timer.getFPS()), 10, 10)
+  trace.draw(16, 40)
 end
