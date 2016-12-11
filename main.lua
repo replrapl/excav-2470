@@ -80,11 +80,11 @@ function love.update(dt)
   end
   if love.keyboard.isDown("w") then
     local a = block.body:getAngle()
-    block.body:setLinearVelocity(- math.cos(- a - math.pi / 2) * 100, math.sin(- a - math.pi / 2) * 100)
+    block.body:setLinearVelocity(math.cos(- a + math.pi / 2) * 100, - math.sin(- a + math.pi / 2) * 100)
   end
   if love.keyboard.isDown("s") then
     local a = block.body:getAngle()
-    block.body:setLinearVelocity(math.cos(- a - math.pi / 2) * 100, - math.sin(- a - math.pi / 2) * 100)
+    block.body:setLinearVelocity(- math.cos(- a + math.pi / 2) * 100, math.sin(- a + math.pi / 2) * 100)
   end
 
   if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false then
