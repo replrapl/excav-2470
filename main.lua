@@ -1,5 +1,6 @@
 require('utils/trace')
 
+local Robot = require('entities/robot')
 local Block = require('entities/block')
 local Background = require('entities/background')
 local Ground = require('entities/ground')
@@ -57,9 +58,8 @@ function love.load()
   background:build()
   background:drawCanvas()
 
-  block = Block:new(world, 25, 25, 50, 50)
-  block.body:setFixedRotation(true)
-  block2 = Block:new(world, 225, 25, 50, 50)
+  rosie = Robot:new(world, 250, 250, 50, 80)
+  block2 = Block:new(world, 350, 250, 50, 50)
 
   ceiling = Wall:new(world, 325, 1, 650, 1)
   ground = Wall:new(world, 325, 649, 650, 1)
@@ -73,22 +73,20 @@ function love.update(dt)
   world:update(dt)
 
   if love.keyboard.isDown("d") then
-    block.body:setAngle(block.body:getAngle() + 0.1)
+    rosie:rotate(0.1)
   end
   if love.keyboard.isDown("a") then
-    block.body:setAngle(block.body:getAngle() - 0.1)
+    rosie:rotate(-0.1)
   end
   if love.keyboard.isDown("w") then
-    local a = block.body:getAngle()
-    block.body:setLinearVelocity(math.cos(- a + math.pi / 2) * 100, - math.sin(- a + math.pi / 2) * 100)
+    rosie:drive(100)
   end
   if love.keyboard.isDown("s") then
-    local a = block.body:getAngle()
-    block.body:setLinearVelocity(- math.cos(- a + math.pi / 2) * 100, math.sin(- a + math.pi / 2) * 100)
+    rosie:drive(-100)
   end
 
   if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false then
-    block.body:setLinearVelocity(0, 0)
+    rosie:stop()
   end
 end
 
@@ -97,7 +95,7 @@ function love.draw()
   love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
 
   background:draw()
-  block:draw()
+  rosie:draw()
   block2:draw()
 
   ceiling:draw()
