@@ -5,6 +5,7 @@ local Background = require('entities/background')
 local Ground = require('entities/ground')
 local Wall = require('entities/wall')
 local Collision = require('collision')
+local Clutterer = require('clutterer')
 
 math.randomseed(os.time())
 
@@ -15,12 +16,14 @@ function love.load()
   alpha = 0
   alphaIncrementer = 1
   alphaMultiplier = 3
+  width = 650
+  height = 650
 
   -- Initialize our world
   world = love.physics.newWorld(0, 50, true)
   world.setCallbacks(world, Collision.beginContact, Collision.endContact, Collision.preSolve, Collision.postSolve)
 
-  love.window.setMode(650, 650) -- set options for our window
+  love.window.setMode(width, height) -- set options for our window
   love.window.setTitle('ZoombaTron!')
 
   background = Background:new(0, 0, {
@@ -64,6 +67,12 @@ function love.load()
   ground = Wall:new(world, 325, 649, 650, 1)
   leftWall = Wall:new(world, 1, 325, 1, 650)
   rightWall = Wall:new(world, 649, 325, 1, 650)
+
+  -- Clutter makes clutter.
+  clutterer = Clutterer:new(width, height)
+
+  -- Track cruft, which spawn randomly.
+  clutter = {}
 end
 
 function love.update(dt)
@@ -81,6 +90,10 @@ function love.update(dt)
   if love.keyboard.isDown("s") then
     block.body:applyForce(0, 900)
   end
+
+  if clutterer.shouldSpawn() then
+    table.insert(clutter, clutterer:spawn())
+  end
 end
 
 function love.draw()
@@ -95,7 +108,16 @@ function love.draw()
   ground:draw()
   leftWall:draw()
   rightWall:draw()
+  
+  -- Clutter to draw.
+  for i = 1, #clutter do
+    cruft = clutter[i]
+    cruft:draw()
+  end
 
+  -- Debug info.
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS()), 10, 10)
+
+  -- Logger
   trace.draw(16, 40)
 end
