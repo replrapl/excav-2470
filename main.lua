@@ -70,16 +70,16 @@ function love.update(dt)
   world:update(dt)
 
   if love.keyboard.isDown("d") then
-    block.body:applyForce(400, 0)
+    block.body:applyForce(600, 0)
   end
   if love.keyboard.isDown("a") then
-    block.body:applyForce(-400, 0)
+    block.body:applyForce(-600, 0)
   end
   if love.keyboard.isDown("w") then
-    block.body:applyForce(0, -400)
+    block.body:applyForce(0, -900)
   end
   if love.keyboard.isDown("s") then
-    block.body:applyForce(0, 400)
+    block.body:applyForce(0, 900)
   end
 end
 
