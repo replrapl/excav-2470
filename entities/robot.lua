@@ -1,21 +1,21 @@
 Robot = {}
 
 function Robot:new(world, x, y)
-  width = 40
-  height = 40
-  body = love.physics.newBody(world, x, y, "dynamic")
+  local width = 40
+  local height = 40
+  local body = love.physics.newBody(world, x, y, "dynamic")
   body:setFixedRotation(true)
-  shape = love.physics.newRectangleShape(width, height)
-  fixture = love.physics.newFixture(body, shape)
+  local shape = love.physics.newRectangleShape(width, height)
+  local fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
-  image = love.graphics.newImage('assets/bin/zoomba.png')
-  scale = 1
+  local image = love.graphics.newImage('assets/bin/zoomba.png')
+  local scale = 1
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,
-    height = width,
+    height = height,
     body = body,
     shape = shape,
     fixture = fixture,

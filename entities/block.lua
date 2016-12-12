@@ -1,12 +1,12 @@
 Block = {}
 
 function Block:new(world, x, y, width, height)
-  body = love.physics.newBody(world, x, y, "dynamic")
-  shape = love.physics.newRectangleShape(width, height)
-  fixture = love.physics.newFixture(body, shape)
+  local body = love.physics.newBody(world, x, y, "dynamic")
+  local shape = love.physics.newRectangleShape(width, height)
+  local fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,

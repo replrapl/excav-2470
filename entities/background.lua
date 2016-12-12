@@ -1,7 +1,7 @@
 Background = {}
 
 function Background:new(x, y, params)
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     size = params.size,

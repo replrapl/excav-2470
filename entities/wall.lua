@@ -3,11 +3,11 @@ require('../utils/trace')
 Wall = {}
 
 function Wall:new(world, x, y, width, height)
-  body = love.physics.newBody(world, x, y, 'static')
-  shape = love.physics.newRectangleShape(width, height)
-  fixture = love.physics.newFixture(body, shape)
+  local body = love.physics.newBody(world, x, y, 'static')
+  local shape = love.physics.newRectangleShape(width, height)
+  local fixture = love.physics.newFixture(body, shape)
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,
