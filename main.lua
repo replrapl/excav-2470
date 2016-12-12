@@ -1,6 +1,7 @@
 require('utils/trace')
 
 local Robot = require('entities/robot')
+local Dog = require('entities/dog')
 local Block = require('entities/block')
 local Background = require('entities/background')
 local Ground = require('entities/ground')
@@ -57,6 +58,7 @@ function love.load()
   background:drawCanvas()
 
   rosie = Robot:new(world, 250, 250, 50, 80)
+  dog = Dog:new(world, 350, 350, 50, 50)
   block2 = Block:new(world, 350, 250, 50, 50)
 
   ceiling = Wall:new(world, 325, 1, 650, 1)
@@ -66,6 +68,8 @@ function love.load()
 
   -- Clutter makes clutter.
   clutterer = Clutterer:new(width, height)
+
+  clutter = {}
 
   -- Set gravity so we don't all fall off :('
   world:setGravity(0, 0)
@@ -91,8 +95,12 @@ function love.update(dt)
     rosie:stop()
   end
 
-  if clutterer:shouldSpawn() then
-   clutterer:spawn()
+  if clutterer:shouldSpawn(#clutter) then
+    clutter[#clutter + 1] = clutterer:spawn()
+  end
+
+  if dog:spaz() then 
+     dog:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
 end
 
@@ -111,6 +119,7 @@ function love.draw()
   end
 
   rosie:draw()
+  dog:draw()
   block2:draw()
 
   ceiling:draw()
