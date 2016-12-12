@@ -8,8 +8,6 @@ function Dog:new(world, x, y, width, height)
   fixture:setRestitution(0)
 
   newObj = {
-    x = x,
-    y = y,
     width = width,
     height = height,
     body = body,
@@ -24,7 +22,12 @@ function Dog:new(world, x, y, width, height)
 end
 
 function Dog:draw()
-  love.graphics.draw(self.image, self.body:getX() - self.image:getWidth() / 2, self.body:getY() - self.image:getHeight() / 2, self.body:getAngle(), 0.7, 0.7, 0, 0)
+  trace.print(tostring(self.body:getX(), self.body:getY()))
+  love.graphics.draw(self.image, 
+    self.body:getX(), 
+    self.body:getY(), self.body:getAngle(), 0.5, 0.5, 
+    self.image:getWidth() / 2, 
+    self.image:getHeight() / 2)
 end
 
 function Dog:move(x, y)
