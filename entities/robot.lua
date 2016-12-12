@@ -1,8 +1,8 @@
 Robot = {}
 
 function Robot:new(world, x, y)
-  local width = 40
-  local height = 40
+  local width = 100
+  local height = 100
   local body = love.physics.newBody(world, x, y, "dynamic")
   body:setFixedRotation(true)
   local shape = love.physics.newRectangleShape(width, height)
@@ -20,7 +20,7 @@ function Robot:new(world, x, y)
     shape = shape,
     fixture = fixture,
     image = image,
-    scale = 1
+    scale = .75
   }
   self.__index = self
   return setmetatable(newObj, self)
