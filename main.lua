@@ -29,22 +29,17 @@ function love.load()
   love.window.setTitle('ZoombaTron!')
 
   background = Background:new(0, 0, {
-    size = 1,
+    size = 5,
     colors = {
       {
-        red = 22,
-        green = 66,
-        blue = 194
+        red = 196,
+        green = 88,
+        blue = 24
       },
       {
-        red = 128,
-        green = 86,
-        blue = 196
-      },
-      {
-        red = 128,
-        green = 43,
-        blue = 170
+        red = 180,
+        green = 88,
+        blue = 24
       }
     },
     alpha = 1,
@@ -74,7 +69,6 @@ function love.load()
   -- Clutter makes clutter.
   clutterer = Clutterer:new(width, height)
 
-  -- Track cruft, which spawn randomly.
   clutter = {}
 
   -- Set gravity so we don't all fall off :('
@@ -111,17 +105,14 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.setColor(220, 6, 217, 255)
-  love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
-
   background:draw()
 
--- Clutter to draw.
-  for i = #clutter, 1, -1 do
-    cruft = clutter[i]
+  -- Clutter to draw.
+  for i = #clutterer.clutter, 1, -1 do
+    cruft = clutterer.clutter[i]
     sucked = rosie:suck(cruft)
     if sucked == true then
-      table.remove(clutter, i)
+      clutterer:remove(i)
     else
       cruft:draw()
     end
