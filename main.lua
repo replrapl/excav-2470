@@ -99,8 +99,8 @@ function love.update(dt)
     rosie:stop()
   end
 
-  if clutterer.shouldSpawn() then
-    table.insert(clutter, clutterer:spawn())
+  if clutterer:shouldSpawn(#clutter) then
+   clutter[#clutter + 1] = clutterer:spawn()
   end
 end
 
