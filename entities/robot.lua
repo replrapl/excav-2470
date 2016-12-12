@@ -40,7 +40,7 @@ function Robot:draw()
 end
 
 function Robot:suck(dust)
-    if distanceTo(self.x, self.y, dust.x, dust.y) < 50l then
+    if distanceTo(self.x, self.y, dust.x, dust.y) < 501 then
         -- trace.print(distanceTo(self.x, self.y, dust.x, dust.y))
         return true
     end
