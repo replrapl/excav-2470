@@ -28,22 +28,17 @@ function love.load()
   love.window.setTitle('ZoombaTron!')
 
   background = Background:new(0, 0, {
-    size = 1,
+    size = 5,
     colors = {
       {
-        red = 22,
-        green = 66,
-        blue = 194
+        red = 196,
+        green = 88,
+        blue = 24
       },
       {
-        red = 128,
-        green = 86,
-        blue = 196
-      },
-      {
-        red = 128,
-        green = 43,
-        blue = 170
+        red = 180,
+        green = 88,
+        blue = 24
       }
     },
     alpha = 1,
