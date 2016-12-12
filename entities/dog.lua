@@ -22,7 +22,6 @@ function Dog:new(world, x, y, width, height)
 end
 
 function Dog:draw()
-  trace.print(tostring(self.body:getX(), self.body:getY()))
   love.graphics.draw(self.image, 
     self.body:getX(), 
     self.body:getY(), self.body:getAngle(), 0.5, 0.5, 
@@ -35,7 +34,6 @@ function Dog:move(x, y)
 end
 
 function Dog:spaz()
-    trace.print(tostring(self:thresholdMet()))
     if self:thresholdMet() then
         self.last = os.time()
         return true
