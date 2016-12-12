@@ -7,7 +7,7 @@ function Dog:new(world, x, y, width, height)
   fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
 
-  newObj = {
+  local newObj = {
     width = width,
     height = height,
     body = body,
