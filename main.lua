@@ -7,6 +7,7 @@ local Ground = require('entities/ground')
 local Wall = require('entities/wall')
 local Collision = require('collision')
 local Clutterer = require('clutterer')
+local Trailer = require('trailer')
 
 math.randomseed(os.time())
 
@@ -67,6 +68,8 @@ function love.load()
   -- Clutter makes clutter.
   clutterer = Clutterer:new(width, height)
 
+  trailer = Trailer:new(100, 100)
+
   -- Set gravity so we don't all fall off :('
   world:setGravity(0, 0)
 end
@@ -81,6 +84,8 @@ function love.update(dt)
     rosie:rotate(-0.1)
   end
   if love.keyboard.isDown("w") then
+    local position = rosie:getPosition()
+    trailer:spawn(position.x, position.y)
     rosie:drive(100)
   end
   if love.keyboard.isDown("s") then
@@ -107,6 +112,16 @@ function love.draw()
       clutterer:remove(i)
     else
       cruft:draw()
+    end
+  end
+
+    -- Clutter to draw.
+  for i = #trailer.trails, 1, -1 do
+    trail = trailer.trails[i]
+    if trail:isFaded() then
+      trailer:remove(i)
+    else
+      trail:draw()
     end
   end
 
