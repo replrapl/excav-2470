@@ -2,6 +2,7 @@ require('utils/trace')
 
 local Robot = require('entities/robot')
 local Dog = require('entities/dog')
+local Cat = require('entities/cat')
 local Block = require('entities/block')
 local Background = require('entities/background')
 local Ground = require('entities/ground')
@@ -59,8 +60,8 @@ function love.load()
 
   rosie = Robot:new(world, 250, 250, 50, 80)
   dog = Dog:new(world, 350, 350, 50, 50)
-  block2 = Block:new(world, 350, 250, 50, 50)
-
+  cat = Cat:new(world, 100, 500, 50, 50)
+  
   ceiling = Wall:new(world, 325, 1, 650, 1)
   ground = Wall:new(world, 325, 649, 650, 1)
   leftWall = Wall:new(world, 1, 325, 1, 650)
@@ -102,6 +103,10 @@ function love.update(dt)
   if dog:spaz() then 
      dog:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
+
+  if cat:spaz() then 
+     cat:move(math.random(-9000, 9000), math.random(-9000, 9000))
+  end
 end
 
 function love.draw()
@@ -120,7 +125,7 @@ function love.draw()
 
   rosie:draw()
   dog:draw()
-  block2:draw()
+  cat:draw()
 
   ceiling:draw()
   ground:draw()
