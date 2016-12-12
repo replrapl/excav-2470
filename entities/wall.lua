@@ -7,7 +7,7 @@ function Wall:new(world, x, y, width, height)
   shape = love.physics.newRectangleShape(width, height)
   fixture = love.physics.newFixture(body, shape)
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,

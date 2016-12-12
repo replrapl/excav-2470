@@ -1,7 +1,7 @@
 Dog = {}
 
 function Dog:new(world, x, y, width, height)
-  image = love.graphics.newImage('assets/src/dog.png')
+  image = love.graphics.newImage('assets/src/cat.png')
   body = love.physics.newBody(world, x, y, "dynamic")
   shape = love.physics.newRectangleShape(width, height)
   fixture = love.physics.newFixture(body, shape)

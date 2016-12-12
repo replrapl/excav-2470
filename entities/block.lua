@@ -6,7 +6,7 @@ function Block:new(world, x, y, width, height)
   fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,
