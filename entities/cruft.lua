@@ -11,6 +11,7 @@ function Cruft:new(x, y)
 end
 
 function Cruft:draw()
+  love.graphics.setColor(255, 255, 255)
   love.graphics.draw(self.image, self.x, self.y)
 end
 

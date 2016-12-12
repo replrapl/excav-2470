@@ -105,12 +105,9 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.setColor(220, 6, 217, 255)
-  love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
-
   background:draw()
 
--- Clutter to draw.
+  -- Clutter to draw.
   for i = #clutter, 1, -1 do
     cruft = clutter[i]
     sucked = rosie:suck(cruft)
