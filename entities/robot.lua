@@ -1,20 +1,26 @@
 Robot = {}
 
-function Robot:new(world, x, y, width, height)
-  body = love.physics.newBody(world, x, y, "dynamic")
+function Robot:new(world, x, y)
+  local width = 100
+  local height = 100
+  local body = love.physics.newBody(world, x, y, "dynamic")
   body:setFixedRotation(true)
-  shape = love.physics.newRectangleShape(width, height)
-  fixture = love.physics.newFixture(body, shape)
+  local shape = love.physics.newRectangleShape(width, height)
+  local fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
+  local image = love.graphics.newImage('assets/bin/zoomba.png')
+  local scale = 1
 
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     width = width,
     height = height,
     body = body,
     shape = shape,
-    fixture = fixture
+    fixture = fixture,
+    image = image,
+    scale = .75
   }
   self.__index = self
   return setmetatable(newObj, self)
@@ -36,7 +42,7 @@ end
 
 function Robot:draw()
   love.graphics.setColor(255, 255, 255)
-  love.graphics.polygon('fill', self.body:getWorldPoints(self.shape:getPoints()))
+  love.graphics.draw(self.image, self.x, self.y, self.body:getAngle(), self.scale, self.scale, self.image:getWidth() / 2, self.image:getHeight() / 2)
 end
 
 function Robot:suck(dust)
@@ -44,6 +50,10 @@ function Robot:suck(dust)
         return true
     end
     return false
+end
+
+function Robot:getPosition()
+    return {x = self.body:getX(), y = self.body:getY() }
 end
 
 function distanceTo(x1, y1, x2, y2)

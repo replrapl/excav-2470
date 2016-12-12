@@ -1,7 +1,7 @@
 Cruft = {}
 
 function Cruft:new(x, y)
-  newObj = {
+  local newObj = {
     x = x,
     y = y,
     image = love.graphics.newImage('assets/bin/cruft.png'),
