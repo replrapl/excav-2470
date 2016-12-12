@@ -42,7 +42,7 @@ end
 
 function Robot:draw()
   love.graphics.setColor(255, 255, 255)
-  love.graphics.draw(self.image, self.x, self.y, self.body:getAngle(), self.scale)
+  love.graphics.draw(self.image, self.x, self.y, self.body:getAngle(), self.scale, self.scale, self.image:getWidth() / 2, self.image:getHeight() / 2)
 end
 
 function Robot:suck(dust)
