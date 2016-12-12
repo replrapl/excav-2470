@@ -56,7 +56,7 @@ function love.load()
   background:build()
   background:drawCanvas()
 
-  rosie = Robot:new(world, 250, 250, 50, 80)
+  rosie = Robot:new(world, 250, 250)
   block2 = Block:new(world, 350, 250, 50, 50)
 
   ceiling = Wall:new(world, 325, 1, 650, 1)
