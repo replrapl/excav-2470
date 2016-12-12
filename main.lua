@@ -111,9 +111,14 @@ function love.draw()
   background:draw()
 
   -- Clutter to draw.
-  for i = 1, #clutter do
+  for i = #clutter, 1, -1 do
     cruft = clutter[i]
-    cruft:draw()
+    sucked = rosie:suck(cruft)
+    if sucked == true then
+      table.remove(clutter, i)
+    else
+      cruft:draw()
+    end
   end
 
   rosie:draw()
