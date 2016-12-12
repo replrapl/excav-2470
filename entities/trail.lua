@@ -17,8 +17,8 @@ end
 
 function Trail:draw()
   love.graphics.setColor(40, 40, 40, self.alpha)
-  love.graphics.draw(self.image, self.x, self.y, self.rotation, 2, 2, self.image:getWidth() / 2, self.image:getHeight() / 2)
-  self.alpha = self.alpha - 1
+  love.graphics.draw(self.image, self.x, self.y, self.rotation, 3, 3, self.image:getWidth() / 2, self.image:getHeight() / 2)
+  self.alpha = self.alpha - 0.7
   self.age = self.age + 1
 end
 
