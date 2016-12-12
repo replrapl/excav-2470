@@ -99,8 +99,8 @@ function love.update(dt)
     rosie:stop()
   end
 
-  if clutterer.shouldSpawn() then
-    table.insert(clutter, clutterer:spawn())
+  if clutterer:shouldSpawn(#clutter) then
+   clutter[#clutter + 1] = clutterer:spawn()
   end
 end
 
@@ -109,6 +109,7 @@ function love.draw()
   love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
 
   background:draw()
+
   -- Clutter to draw.
   for i = #clutter, 1, -1 do
     cruft = clutter[i]

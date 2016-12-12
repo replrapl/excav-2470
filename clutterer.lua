@@ -21,8 +21,13 @@ function Clutterer:spawnLocation()
 end
 
 -- Randomly decide to spawn or not.
-function Clutterer:shouldSpawn()
-  return math.random()
+function Clutterer:shouldSpawn(count)
+  -- If we haven't reached the limit
+  if count < 5 then
+    return true
+  end
+
+  return false
 end
 
 -- Convenience method for spawning.
