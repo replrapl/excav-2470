@@ -110,7 +110,7 @@ function love.draw()
 
   background:draw()
 
-  -- Clutter to draw.
+-- Clutter to draw.
   for i = #clutter, 1, -1 do
     cruft = clutter[i]
     sucked = rosie:suck(cruft)
