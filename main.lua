@@ -109,6 +109,12 @@ function love.draw()
   love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
 
   background:draw()
+  -- Clutter to draw.
+  for i = 1, #clutter do
+    cruft = clutter[i]
+    cruft:draw()
+  end
+
   rosie:draw()
   block2:draw()
 
@@ -116,12 +122,6 @@ function love.draw()
   ground:draw()
   leftWall:draw()
   rightWall:draw()
-  
-  -- Clutter to draw.
-  for i = 1, #clutter do
-    cruft = clutter[i]
-    cruft:draw()
-  end
 
   -- Debug info.
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS()), 10, 10)
