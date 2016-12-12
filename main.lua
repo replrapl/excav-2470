@@ -72,9 +72,6 @@ function love.load()
   -- Clutter makes clutter.
   clutterer = Clutterer:new(width, height)
 
-  -- Track cruft, which spawn randomly.
-  clutter = {}
-
   -- Set gravity so we don't all fall off :('
   world:setGravity(0, 0)
 end
@@ -99,8 +96,8 @@ function love.update(dt)
     rosie:stop()
   end
 
-  if clutterer:shouldSpawn(#clutter) then
-   clutter[#clutter + 1] = clutterer:spawn()
+  if clutterer:shouldSpawn() then
+   clutterer:spawn()
   end
 end
 
@@ -108,11 +105,11 @@ function love.draw()
   background:draw()
 
   -- Clutter to draw.
-  for i = #clutter, 1, -1 do
-    cruft = clutter[i]
+  for i = #clutterer.clutter, 1, -1 do
+    cruft = clutterer.clutter[i]
     sucked = rosie:suck(cruft)
     if sucked == true then
-      table.remove(clutter, i)
+      clutterer:remove(i)
     else
       cruft:draw()
     end
