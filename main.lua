@@ -109,6 +109,7 @@ function love.draw()
   love.graphics.print("BlickBlock", 300, 200, 0, 1.5, 1.5)
 
   background:draw()
+
   -- Clutter to draw.
   for i = 1, #clutter do
     cruft = clutter[i]
