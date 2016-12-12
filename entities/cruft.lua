@@ -4,7 +4,7 @@ function Cruft:new(x, y)
   newObj = {
     x = x,
     y = y,
-    image = love.graphics.newImage('assets/bin/blarg.png'),
+    image = love.graphics.newImage('assets/bin/cruft.png'),
     offset = math.random(0, 2*math.pi), -- offset in radians
     scale = math.random(1, 2)
   }
