@@ -39,6 +39,7 @@ function Robot:drive(velocity)
 end
 
 function Robot:rotate(angle)
+    self.runningVacSound:play()
     self.body:setAngle(self.body:getAngle() + angle)
 end
 

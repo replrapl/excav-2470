@@ -96,7 +96,7 @@ function love.update(dt)
     rosie:drive(-100)
   end
 
-  if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false then
+  if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false and love.keyboard.isDown("a") == false and love.keyboard.isDown("d") == false then
     rosie:stop()
   end
 
