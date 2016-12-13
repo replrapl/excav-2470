@@ -1,5 +1,8 @@
 Robot = {}
 
+crinkleSound = love.audio.newSource("assets/sound/crinkle.wav", "static")
+runningVacSound = love.audio.newSource("assets/sound/running_vac.wav", "static")
+
 function Robot:new(world, x, y)
   local radius = 30
   local body = love.physics.newBody(world, x, y, "dynamic")
@@ -19,13 +22,17 @@ function Robot:new(world, x, y)
     shape = shape,
     fixture = fixture,
     image = image,
-    scale = .75
+    scale = .75,
+    crinkle = crinkleSound,
+    runningVacSound = runningVacSound,
+    score = 0
   }
   self.__index = self
   return setmetatable(newObj, self)
 end
 
 function Robot:drive(velocity)
+    self.runningVacSound:play()
     local angle = self.body:getAngle()
     self.body:setLinearVelocity(math.cos(- angle + math.pi / 2) * velocity, - math.sin(- angle + math.pi / 2) * velocity)
     self.x, self.y = self.body:getWorldPoints(0, 0)
@@ -36,6 +43,7 @@ function Robot:rotate(angle)
 end
 
 function Robot:stop()
+    self.runningVacSound:stop()
     self.body:setLinearVelocity(0, 0)
 end
 
@@ -46,6 +54,8 @@ end
 
 function Robot:suck(dust)
     if distanceTo(self.x, self.y, dust.x, dust.y) < 50 then
+        self.crinkle:play()
+        self.score=self.score+1
         return true
     end
     return false
