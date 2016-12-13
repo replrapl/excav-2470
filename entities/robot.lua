@@ -1,6 +1,7 @@
 Robot = {}
 
-crinkle = love.audio.newSource("assets/sound/crinkle.wav", "static")
+crinkleSound = love.audio.newSource("assets/sound/crinkle.wav", "static")
+runningVacSound = love.audio.newSource("assets/sound/running_vac.wav", "static")
 
 function Robot:new(world, x, y)
   local width = 100
@@ -23,13 +24,15 @@ function Robot:new(world, x, y)
     fixture = fixture,
     image = image,
     scale = .75,
-    crinkle = crinkle
+    crinkle = crinkleSound,
+    runningVacSound = runningVacSound
   }
   self.__index = self
   return setmetatable(newObj, self)
 end
 
 function Robot:drive(velocity)
+    self.runningVacSound:play()
     local angle = self.body:getAngle()
     self.body:setLinearVelocity(math.cos(- angle + math.pi / 2) * velocity, - math.sin(- angle + math.pi / 2) * velocity)
     self.x, self.y = self.body:getWorldPoints(0, 0)
