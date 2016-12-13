@@ -1,8 +1,5 @@
 Robot = {}
 
-crinkleSound = love.audio.newSource("assets/sound/crinkle.wav", "static")
-runningVacSound = love.audio.newSource("assets/sound/running_vac.wav", "static")
-
 function Robot:new(world, x, y)
   local radius = 30
   local body = love.physics.newBody(world, x, y, "dynamic")
@@ -12,6 +9,10 @@ function Robot:new(world, x, y)
   fixture:setRestitution(0)
   local image = love.graphics.newImage('assets/bin/zoomba.png')
   local scale = 1
+  local crinkleSound = love.audio.newSource("assets/sound/crinkle.wav", "static")
+  local runningVacSound = love.audio.newSource("assets/sound/running_vac.wav", "static")
+  local spinningVacSound = love.audio.newSource("assets/sound/running_vac.wav", "static")
+  spinningVacSound:setPitch(2)
 
   local newObj = {
     x = x,
@@ -25,6 +26,7 @@ function Robot:new(world, x, y)
     scale = .75,
     crinkle = crinkleSound,
     runningVacSound = runningVacSound,
+    spinningVacSound = spinningVacSound,
     score = 0
   }
   self.__index = self
@@ -32,6 +34,7 @@ function Robot:new(world, x, y)
 end
 
 function Robot:drive(velocity)
+    self.spinningVacSound:stop()
     self.runningVacSound:play()
     local angle = self.body:getAngle()
     self.body:setLinearVelocity(math.cos(- angle + math.pi / 2) * velocity, - math.sin(- angle + math.pi / 2) * velocity)
@@ -41,9 +44,11 @@ end
 function Robot:rotate(angle)
     self.runningVacSound:play()
     self.body:setAngle(self.body:getAngle() + angle)
+    self.spinningVacSound:play()
 end
 
 function Robot:stop()
+    self.spinningVacSound:stop()
     self.runningVacSound:stop()
     self.body:setLinearVelocity(0, 0)
 end
