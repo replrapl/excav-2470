@@ -1,11 +1,10 @@
 Robot = {}
 
 function Robot:new(world, x, y)
-  local width = 100
-  local height = 100
+  local radius = 30
   local body = love.physics.newBody(world, x, y, "dynamic")
   body:setFixedRotation(true)
-  local shape = love.physics.newRectangleShape(width, height)
+  local shape = love.physics.newCircleShape(radius)--, height)
   local fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
   local image = love.graphics.newImage('assets/bin/zoomba.png')

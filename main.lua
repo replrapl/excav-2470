@@ -59,7 +59,7 @@ function love.load()
   background:build()
   background:drawCanvas()
 
-  rosie = Robot:new(world, 250, 250, 50, 80)
+  rosie = Robot:new(world, 250, 250, 50, 50)
   dog = Dog:new(world, 350, 350, 50, 50)
   cat = Cat:new(world, 100, 500, 50, 50)
   
