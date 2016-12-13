@@ -1,5 +1,7 @@
 Robot = {}
 
+crinkle = love.audio.newSource("assets/sound/crinkle.wav", "static")
+
 function Robot:new(world, x, y)
   local width = 100
   local height = 100
@@ -20,7 +22,8 @@ function Robot:new(world, x, y)
     shape = shape,
     fixture = fixture,
     image = image,
-    scale = .75
+    scale = .75,
+    crinkle = crinkle
   }
   self.__index = self
   return setmetatable(newObj, self)
@@ -47,6 +50,7 @@ end
 
 function Robot:suck(dust)
     if distanceTo(self.x, self.y, dust.x, dust.y) < 50 then
+        self.crinkle:play()
         return true
     end
     return false
