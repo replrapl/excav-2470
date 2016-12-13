@@ -147,7 +147,7 @@ function love.draw()
   rightWall:draw()
 
   -- Debug info.
-  love.graphics.print("Current FPS: "..tostring(rosie:score), 10, 10)
+  love.graphics.print("Current Score: "..tostring(rosie.score), 10, 10)
 
   -- Logger
   trace.draw(16, 40)
