@@ -44,6 +44,7 @@ function Robot:rotate(angle)
 end
 
 function Robot:stop()
+    self.runningVacSound:stop()
     self.body:setLinearVelocity(0, 0)
 end
 
