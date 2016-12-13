@@ -25,7 +25,8 @@ function Robot:new(world, x, y)
     image = image,
     scale = .75,
     crinkle = crinkleSound,
-    runningVacSound = runningVacSound
+    runningVacSound = runningVacSound,
+    score = 0
   }
   self.__index = self
   return setmetatable(newObj, self)
@@ -54,6 +55,7 @@ end
 function Robot:suck(dust)
     if distanceTo(self.x, self.y, dust.x, dust.y) < 50 then
         self.crinkle:play()
+        self.score=self.score+1
         return true
     end
     return false
