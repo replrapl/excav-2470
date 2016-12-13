@@ -15,7 +15,7 @@ math.randomseed(os.time())
 
 function love.load()
   love.graphics.setBackgroundColor(63, 63, 63)
-  -- trace.print('Trace initialized.', trace.styles.green)
+  trace.print('', trace.styles.green)
 
   alpha = 0
   alphaIncrementer = 1
