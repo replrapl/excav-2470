@@ -7,7 +7,7 @@ function Trail:new(x, y)
     image = love.graphics.newImage('assets/bin/cruft.png'),
     offset = 0,
     scale = 1,
-    alpha = 50,
+    alpha = 70,
     rotation = math.random(0, 2 * math.pi),
     age = 0
   }
