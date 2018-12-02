@@ -105,11 +105,11 @@ function love.update(dt)
   end
 
   if dog:spaz() then 
-     dog:move(math.random(-9000, 9000), math.random(-9000, 9000))
+    dog:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
 
   if cat:spaz() then 
-     cat:move(math.random(-9000, 9000), math.random(-9000, 9000))
+    cat:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
 end
 
