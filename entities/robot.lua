@@ -34,23 +34,23 @@ function Robot:new(world, x, y)
 end
 
 function Robot:drive(velocity)
-    self.spinningVacSound:stop()
-    self.runningVacSound:play()
-    local angle = self.body:getAngle()
-    self.body:setLinearVelocity(math.cos(- angle + math.pi / 2) * velocity, - math.sin(- angle + math.pi / 2) * velocity)
-    self.x, self.y = self.body:getWorldPoints(0, 0)
+  self.spinningVacSound:stop()
+  self.runningVacSound:play()
+  local angle = self.body:getAngle()
+  self.body:setLinearVelocity(math.cos(- angle + math.pi / 2) * velocity, - math.sin(- angle + math.pi / 2) * velocity)
+  self.x, self.y = self.body:getWorldPoints(0, 0)
 end
 
 function Robot:rotate(angle)
-    self.runningVacSound:play()
-    self.body:setAngle(self.body:getAngle() + angle)
-    self.spinningVacSound:play()
+  self.runningVacSound:play()
+  self.body:setAngle(self.body:getAngle() + angle)
+  self.spinningVacSound:play()
 end
 
 function Robot:stop()
-    self.spinningVacSound:stop()
-    self.runningVacSound:stop()
-    self.body:setLinearVelocity(0, 0)
+  self.spinningVacSound:stop()
+  self.runningVacSound:stop()
+  self.body:setLinearVelocity(0, 0)
 end
 
 function Robot:draw()
@@ -59,20 +59,20 @@ function Robot:draw()
 end
 
 function Robot:suck(dust)
-    if distanceTo(self.x, self.y, dust.x, dust.y) < 50 then
-        self.crinkle:play()
-        self.score=self.score+1
-        return true
-    end
-    return false
+  if distanceTo(self.x, self.y, dust.x, dust.y) < 50 then
+    self.crinkle:play()
+    self.score=self.score+1
+    return true
+  end
+  return false
 end
 
 function Robot:getPosition()
-    return {x = self.body:getX(), y = self.body:getY() }
+  return {x = self.body:getX(), y = self.body:getY() }
 end
 
 function distanceTo(x1, y1, x2, y2)
-    return math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2))
+  return math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2))
 end
 
 return Robot

@@ -30,19 +30,19 @@ function Dog:draw()
 end
 
 function Dog:move(x, y)
-    self.body:applyForce(x, y)
+  self.body:applyForce(x, y)
 end
 
 function Dog:spaz()
-    if self:thresholdMet() then
-        self.last = os.time()
-        return true
-    end
-    return false
+  if self:thresholdMet() then
+    self.last = os.time()
+    return true
+  end
+  return false
 end
 
 function Dog:thresholdMet()
-    return os.difftime(os.time(), self.last) > self.threshold
+  return os.difftime(os.time(), self.last) > self.threshold
 end
 
 return Dog
