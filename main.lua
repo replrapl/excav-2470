@@ -1,8 +1,9 @@
 require('utils/trace')
 
+local Map = require('entities/map')
 local Robot = require('entities/robot')
-local Dog = require('entities/dog')
-local Cat = require('entities/cat')
+-- local Dog = require('entities/dog')
+-- local Cat = require('entities/cat')
 local Block = require('entities/block')
 local Background = require('entities/background')
 local Ground = require('entities/ground')
@@ -10,11 +11,12 @@ local Wall = require('entities/wall')
 local Collision = require('collision')
 local Clutterer = require('clutterer')
 local Trailer = require('trailer')
+local currentMap = "taco"
 
 math.randomseed(os.time())
 
 function love.load()
-  love.graphics.setBackgroundColor(63, 63, 63)
+  love.graphics.setBackgroundColor(117/255, 59/255, 59/255)
   trace.print('', trace.styles.green)
 
   alpha = 0
@@ -22,6 +24,8 @@ function love.load()
   alphaMultiplier = 3
   width = 650
   height = 650
+  cameraX = 0
+  cameraY = 0
 
   -- Initialize our world
   world = love.physics.newWorld(0, 50, true)
@@ -56,12 +60,12 @@ function love.load()
     maxHeight = 650,
     maxWidth = 650
   })
-  background:build()
-  background:drawCanvas()
+  --background:build()
+  --background:drawCanvas()
 
   rosie = Robot:new(world, 250, 250, 50, 50)
-  dog = Dog:new(world, 350, 350, 50, 50)
-  cat = Cat:new(world, 100, 500, 50, 50)
+  -- dog = Dog:new(world, 350, 350, 50, 50)
+  -- cat = Cat:new(world, 100, 500, 50, 50)
   
   ceiling = Wall:new(world, 325, 1, 650, 1)
   ground = Wall:new(world, 325, 649, 650, 1)
@@ -76,6 +80,9 @@ function love.load()
 
   -- Set gravity so we don't all fall off :('
   world:setGravity(0, 0)
+
+  -- Load map
+  map = Map:new(currentMap, 0, 0, 10, 10, 0, 0)
 end
 
 function love.update(dt)
@@ -104,6 +111,7 @@ function love.update(dt)
     clutter[#clutter + 1] = clutterer:spawn()
   end
 
+  --[[ 
   if dog:spaz() then 
     dog:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
@@ -111,10 +119,12 @@ function love.update(dt)
   if cat:spaz() then 
     cat:move(math.random(-9000, 9000), math.random(-9000, 9000))
   end
+  ]]
 end
 
 function love.draw()
-  background:draw()
+  --background:draw()
+  map:draw(cameraX+1, cameraY+1)
 
   -- Clutter to draw.
   for i = #clutterer.clutter, 1, -1 do
@@ -138,11 +148,11 @@ function love.draw()
   end
 
   rosie:draw()
-  dog:draw()
-  cat:draw()
+  -- dog:draw()
+  -- cat:draw()
 
-  ceiling:draw()
-  ground:draw()
+  -- ceiling:draw()
+  -- ground:draw()
   leftWall:draw()
   rightWall:draw()
 

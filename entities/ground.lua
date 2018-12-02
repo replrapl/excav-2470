@@ -21,7 +21,7 @@ function Ground:new(world, x, y, width, height)
 end
 
 function Ground:draw()
-  love.graphics.setColor(188, 106, 83)
+  love.graphics.setColor(114, 59, 59)
   love.graphics.polygon('line', self.body:getWorldPoints(self.shape:getPoints()))
 end
 
