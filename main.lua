@@ -107,6 +107,12 @@ function love.update(dt)
     map:moveCameraDown()
   end
 
+  if love.keyboard.isDown("w") or love.keyboard.isDown("a") or love.keyboard.isDown("s") or love.keyboard.isDown("d") then
+    map:increaseCameraMovementSpeed()
+  else
+    map:decreaseCameraMovementSpeed()
+  end
+
   if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false and love.keyboard.isDown("a") == false and love.keyboard.isDown("d") == false then
     rosie:stop()
   end
@@ -161,7 +167,7 @@ function love.draw()
   rightWall:draw()
 
   -- Debug info.
-  love.graphics.print("Current Score: "..tostring(rosie.score), 10, 10)
+  love.graphics.print("Current Score: "..tostring(map.cameraMovementMultiplier), 10, 10)
 
   -- Logger
   trace.draw(16, 40)
