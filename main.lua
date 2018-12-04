@@ -16,7 +16,7 @@ local currentMap = "taco"
 math.randomseed(os.time())
 
 function love.load()
-  love.graphics.setBackgroundColor(117/255, 59/255, 59/255)
+  -- love.graphics.setBackgroundColor(117/255, 59/255, 59/255)
   trace.print('', trace.styles.green)
 
   alpha = 0
@@ -82,25 +82,29 @@ function love.load()
   world:setGravity(0, 0)
 
   -- Load map
-  map = Map:new(currentMap, 0, 0, 10, 10, 0, 0)
+  map = Map:new(currentMap, 0, 0, width, height, 0, 0)
 end
 
 function love.update(dt)
   world:update(dt)
 
   if love.keyboard.isDown("d") then
-    rosie:rotate(0.1)
+    -- rosie:rotate(0.1)
+    map:moveCameraRight()
   end
   if love.keyboard.isDown("a") then
-    rosie:rotate(-0.1)
+    -- rosie:rotate(-0.1)
+    map:moveCameraLeft()
   end
   if love.keyboard.isDown("w") then
     local position = rosie:getPosition()
     trailer:spawn(position.x, position.y)
-    rosie:drive(100)
+    -- rosie:drive(100)
+    map:moveCameraUp()
   end
   if love.keyboard.isDown("s") then
-    rosie:drive(-100)
+    -- rosie:drive(-100)
+    map:moveCameraDown()
   end
 
   if love.keyboard.isDown("s") == false and love.keyboard.isDown("w") == false and love.keyboard.isDown("a") == false and love.keyboard.isDown("d") == false then
@@ -124,7 +128,7 @@ end
 
 function love.draw()
   --background:draw()
-  map:draw(cameraX+1, cameraY+1)
+  map:draw()
 
   -- Clutter to draw.
   for i = #clutterer.clutter, 1, -1 do
